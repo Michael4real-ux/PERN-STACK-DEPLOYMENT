@@ -54,7 +54,7 @@ postgres=# \du
  Role name |                         Attributes                         | Member of
 -----------+------------------------------------------------------------+-----------
  postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- sanjeev   | Superuser, Create role, Create DB                          | {}
+ michael   | Superuser, Create role, Create DB                          | {}
  test      |                                                            | {}
  test1     | Superuser, Create role, Create DB                          | {}
  ubuntu    | Superuser, Create role, Create DB                          | {}
@@ -180,7 +180,7 @@ mkdir yelp-app
 move inside the `yelp-app` directory and clone the project repo
 ```
 cd yelp-app
-git clone https://github.com/Sanjeev-Thiyagarajan/PERN-STACK-DEPLOYMENT.git .
+https://github.com/Michael4real-ux/PERN-STACK-DEPLOYMENT.git .
 ```
 
 ## 4. Install Node
@@ -266,14 +266,14 @@ default
 ```
 The default server block is what will be responsible for handling requests that don't match any other server blocks. Right now if you navigate to your server ip, you will see a pretty bland html page that says NGINX is installed. That is the `default` server block in action. 
 
-We will need to configure a new server block for our website. To do that let's create a new file in `/etc/nginx/sites-available/` directory. We can call this file whatever you want, but I recommend that you name it the same name as your domain name for your app. In this example my website will be hosted at *sanjeev.xyz* so I will also name the new file `sanjeev.xyz`. But instead of creating a brand new file, since most of the configs will be fairly similar to the `default` server block, I recommend copying the `default` config.
+We will need to configure a new server block for our website. To do that let's create a new file in `/etc/nginx/sites-available/` directory. We can call this file whatever you want, but I recommend that you name it the same name as your domain name for your app. In this example my website will be hosted at *michael.xyz* so I will also name the new file `michael.xyz`. But instead of creating a brand new file, since most of the configs will be fairly similar to the `default` server block, I recommend copying the `default` config.
 
 ```
 cd /etc/nginx/sites-available
-sudo cp default sanjeev.xyz
+sudo cp default michael.xyz
 ```
 
-open the new server block file `sanjeev.xyz` and modify it so it matches below:
+open the new server block file `michael.xyz` and modify it so it matches below:
 
 ```
 server {
@@ -285,7 +285,7 @@ server {
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
-        server_name sanjeev.xyz www.sanjeev.xyz;
+        server_name michael.xyz www.michael.xyz;
 
         location / {
                 try_files $uri /index.html;
@@ -309,9 +309,9 @@ The first two lines `listen 80` and `listen [::]:80;` tell nginx to listen for t
 
 `root /home/ubuntu/apps/yelp-app/client/build;` tells nginx the path to the index.html file it will server. Here we passed the path to the build directory in our react app code. This directory has the finalized html/js/css files for the frontend.
 
-`server_name sanjeev.xyz www.sanjeev.xyz;` tells nginx what domain names it should listen for. Make sure to replace this with your specific domains. If you don't have a domain then you can put the ip address of your ubuntu server.
+`server_name michael.xyz www.michael.xyz;` tells nginx what domain names it should listen for. Make sure to replace this with your specific domains. If you don't have a domain then you can put the ip address of your ubuntu server.
 
-The configuration block below is needed due to the fact that React is a Singe-Page-App. So if a user directly goes to a url that is not the root url like `https://sanjeev.xyz/restaurants/4` you will get a 404 cause NGINX has not been configured to handle any path ohter than the `/`. This config block tells nginx to redirect everything back to the `/` path so that react can then handle the routing.
+The configuration block below is needed due to the fact that React is a Singe-Page-App. So if a user directly goes to a url that is not the root url like `https://micahael.xyz/restaurants/4` you will get a 404 cause NGINX has not been configured to handle any path ohter than the `/`. This config block tells nginx to redirect everything back to the `/` path so that react can then handle the routing.
 
 ```
         location / {
@@ -323,7 +323,7 @@ The last section is so that nginx can handle traffic destined to the backend. No
 
 **Enable the new site**
 ```
-sudo ln -s /etc/nginx/sites-available/sanjeev.xyz /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/michael.xyz /etc/nginx/sites-enabled/
 systemctl restart nginx
 ```
 
@@ -398,5 +398,5 @@ sudo certbot --nginx
 ```
 
 ## Authors
-* **Sanjeev Thiyagarajan** - *CEO of Nothing*
+* **Michael Damilola** - *CEO of Nothing*
 
